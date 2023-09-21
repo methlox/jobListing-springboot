@@ -30,7 +30,6 @@ const Feed = () => {
     if (query.length === 0) fetchInitialPosts();
     if (query.length > 2) fetchPosts();
   }, [query]);
-  console.log(post);
   return (
     <Grid container spacing={2} sx={{ margin: "2%" }}>
       <Grid item xs={12} sx={12} md={12} lg={12}>
@@ -80,8 +79,10 @@ const Feed = () => {
                   Skills :{" "}
                 </Typography>
                 {p.techs.map((s, i) => {
+                  
                   return (
                     <Typography variant="body" gutterBottom key={i}>
+
                       {s} .{` `}
                     </Typography>
                   );
