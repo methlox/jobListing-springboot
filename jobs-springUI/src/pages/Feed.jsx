@@ -33,7 +33,7 @@ const Feed = () => {
   return (
     <Grid container spacing={2} sx={{ margin: "2%" }}>
       <Grid item xs={12} sx={12} md={12} lg={12}>
-        <Button sx={{ margin: "1% 2%" }} variant="outlined">
+        <Button variant="filled" sx={{ margin: "1% 2%" }}>
           <Link to="/">Home</Link>
         </Button>
         <Box>
@@ -62,7 +62,7 @@ const Feed = () => {
                   sx={{ fontSize: "2rem", fontWeight: "600" }}
                 >
                   {p.profile}
-                </Typography>
+                </Typography>``
                 <Typography
                   sx={{ color: "#585858", marginTop: "2%" }}
                   variant="body"
