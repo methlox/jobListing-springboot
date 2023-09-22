@@ -9,7 +9,7 @@ const Home = () => {
 
   const buttonStyle = {
     display: "inline-block",
-    backgroundColor: isHovered ? "#F27457" : "#BF665E",
+    backgroundColor: isHovered ? "#F2526E" : "#E81557",
     color: "black",
     textDecoration: "none",
     fontFamily: "Inter",
@@ -55,12 +55,7 @@ const Home = () => {
       >
         get hired, within seconds!
       </Typography>
-      <div>
-        {/* <Link to="/employer/dashboard">
-          Looking to hire someone? Post here.
-        </Link> */}
-
-        <Grid xs={12} md={6} lg={4}>
+        <div>
           <Card
             sx={{
               marginTop: "35px",
@@ -101,8 +96,11 @@ const Home = () => {
               }}
             />
           </Card>
-        </Grid>
-      </div>
+        </div>
+
+        {/* <Link to="/employer/dashboard">
+          Looking to hire someone? Post here.
+        </Link> */}
     </Box>
   );
 };
