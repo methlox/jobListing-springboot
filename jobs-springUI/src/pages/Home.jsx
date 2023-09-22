@@ -1,9 +1,32 @@
-import React from "react";
-import { Typography, Button, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Typography, Button, Box, Grid, Card } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../App.css";
-
+import { IoIosArrowForward } from "react-icons/io";
+import ui from "../assets/images/ui.png";
 const Home = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const buttonStyle = {
+    display: "inline-block",
+    backgroundColor: isHovered ? "#F27457" : "#BF665E",
+    color: "black",
+    textDecoration: "none",
+    fontFamily: "Inter",
+    fontSize: "1.3em",
+    padding: "10px 20px",
+    borderRadius: "5px",
+    transition: "background-color 0.3s ease-in-out",
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <Box
       sx={{
@@ -13,10 +36,9 @@ const Home = () => {
         width: "100%",
         height: "100%",
         backgroundSize: "cover",
-        // backgroundColor: "black",
-        background: 'rgb(2,0,36)',
-        background: 'linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,118,95,1) 29%, rgba(25,141,138,1) 100%)',
-      
+        backgroundColor: "#000000",
+        // background:
+        //   "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,118,95,1) 29%, rgba(25,141,138,1) 100%)",
       }}
     >
       <Typography
@@ -34,18 +56,52 @@ const Home = () => {
         get hired, within seconds!
       </Typography>
       <div>
-        <ul className="ul">
-          <li>
-            <Button sx={{ margin: "2% 3%" }} variant="outlined">
-              <Link to="/employer/dashboard">Hire talent</Link>
-            </Button>
-          </li>
-          <li>
-            <Button sx={{ margin: "2% 3%" }} variant="outlined">
-              <Link to="/employee/feed">Get Job Now</Link>
-            </Button>
-          </li>
-        </ul>
+        {/* <Link to="/employer/dashboard">
+          Looking to hire someone? Post here.
+        </Link> */}
+
+        <Grid xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              marginTop: "35px",
+              padding: "3%",
+              overflow: "hidden",
+              width: "65%",
+              backgroundColor: "#F2AE30",
+
+              padding: "50px",
+            }}
+          >
+            <Typography
+              sx={{
+                color: "black",
+                fontFamily: "IBM Plex Sans",
+                marginBottom: "10px",
+              }}
+              variant="h4"
+              align="left"
+            >
+              Browse through thousands of jobx
+            </Typography>
+
+            <a
+              href="/employee/feed"
+              style={buttonStyle}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave} // Add rounded corners  }}
+            >
+              Get Started
+            </a>
+            <img
+              src={ui}
+              style={{
+                maxWidth: "70rem",
+                maxHeight: "60rem",
+                marginTop: "2em",
+              }}
+            />
+          </Card>
+        </Grid>
       </div>
     </Box>
   );
