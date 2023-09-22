@@ -10,7 +10,7 @@ const Home = () => {
     color: "black",
     textDecoration: "none",
     fontFamily: "Inter",
-    fontSize: "1.3em",
+    fontSize: "1.2em",
     padding: "10px 20px",
     borderRadius: "5px",
     transition: "background-color 0.3s ease-in-out",

@@ -57,10 +57,10 @@ const Feed = () => {
   }, [query]);
   return (
     <div>
-      <Grid container spacing={2} sx={{ margin: "2%" }}>
+      <Grid container spacing={2} sx={{ marginLeft:'0.8em', marginTop:'2%' }}>
         <Grid item xs={12} sx={12} md={12} lg={12}>
           <a
-            href="/employee/feed"
+            href="/"
             style={buttonStyle}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -79,9 +79,10 @@ const Feed = () => {
               variant="filled"
               label="Search"
               placeholder=""
-              sx={{ width: "39%" }}
+              sx={{ width: "39%",}}
               fullWidth
               onChange={(e) => setQuery(e.target.value)}
+              
             />
             <a
               href="/employer/dashboard"
