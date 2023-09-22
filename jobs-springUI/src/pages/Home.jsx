@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Typography, Button, Box, Grid, Card } from "@mui/material";
-import { Link } from "react-router-dom";
-import "../App.css";
-import { IoIosArrowForward } from "react-icons/io";
+import React, { useState } from "react";
+import { Typography, Box, Card } from "@mui/material";
 import ui from "../assets/images/ui.png";
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -37,8 +34,6 @@ const Home = () => {
         height: "100%",
         backgroundSize: "cover",
         backgroundColor: "#000000",
-        // background:
-        //   "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,118,95,1) 29%, rgba(25,141,138,1) 100%)",
       }}
     >
       <Typography
@@ -83,7 +78,7 @@ const Home = () => {
               href="/employee/feed"
               style={buttonStyle}
               onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave} // Add rounded corners  }}
+              onMouseLeave={handleMouseLeave}
             >
               Get Started
             </a>
@@ -97,10 +92,6 @@ const Home = () => {
             />
           </Card>
         </div>
-
-        {/* <Link to="/employer/dashboard">
-          Looking to hire someone? Post here.
-        </Link> */}
     </Box>
   );
 };

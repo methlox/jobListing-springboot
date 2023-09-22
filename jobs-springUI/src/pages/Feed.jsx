@@ -1,18 +1,43 @@
 import {
-  Box,
   Card,
   Grid,
   TextField,
   Typography,
   InputAdornment,
-  Button,
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
+import { MdArrowBackIos } from "react-icons/md";
+import "../App.css";
 
 const Feed = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const iconStyle = {
+    verticalAlign: "middle",
+    marginRight: "5px",
+  };
+
+  const buttonStyle = {
+    display: "inline-block",
+    backgroundColor: isHovered ? "#F2526E" : "#E81557",
+    color: "black",
+    padding: "10px 20px",
+    transition: "background-color 0.1s ease-in-out",
+    marginBottom: "10px",
+    verticalAlign: "middle",
+    borderRadius: "5px",
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const [query, setQuery] = useState("");
   const [post, setPost] = useState();
 
@@ -31,67 +56,94 @@ const Feed = () => {
     if (query.length > 2) fetchPosts();
   }, [query]);
   return (
-    <Grid container spacing={2} sx={{ margin: "2%" }}>
-      <Grid item xs={12} sx={12} md={12} lg={12}>
-        <Button variant="filled" sx={{ margin: "1% 2%" }}>
-          <Link to="/">Home</Link>
-        </Button>
-        <Box>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="Search..."
-            sx={{ width: "75%", padding: "2% auto" }}
-            fullWidth
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </Box>
+    <div>
+      <Grid container spacing={2} sx={{ margin: "2%" }}>
+        <Grid item xs={12} sx={12} md={12} lg={12}>
+          <a
+            href="/employee/feed"
+            style={buttonStyle}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <MdArrowBackIos style={iconStyle} />
+          </a>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <TextField
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              variant="filled"
+              label="Search"
+              placeholder=""
+              sx={{ width: "39%" }}
+              fullWidth
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <a
+              href="/employer/dashboard"
+              style={{
+                marginLeft: "5rem",
+                color: "white",
+                fontFamily: "IBM Plex Sans",
+                fontSize: "2em",
+                textDecoration: "none",
+              }}
+              onMouseOver={(e) => (e.target.style.textDecoration = "underline")}
+              onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+            >
+              Looking to hire?
+            </a>
+          </div>
+        </Grid>
+        {post &&
+          post.map((p) => {
+            return (
+              <Grid key={p.id} item xs={12} md={6} lg={4}>
+                <Card
+                  sx={{
+                    padding: "3%",
+                    overflow: "hidden",
+                    width: "84%",
+                    backgroundColor: "#65BF8F",
+                  }}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ fontSize: "2rem", fontWeight: "600" }}
+                  >
+                    {p.profile}
+                  </Typography>
+                  <Typography
+                    sx={{ color: "#585858", marginTop: "2%" }}
+                    variant="body"
+                  >
+                    Description: {p.desc}
+                  </Typography>
+                  <br />
+                  <br />
+                  <Typography variant="h6">
+                    Experience: {p.exp} years
+                  </Typography>
+                  <Typography gutterBottom variant="body">
+                    Skills :{" "}
+                  </Typography>
+                  {p.techs.map((s, i) => {
+                    return (
+                      <Typography variant="body" gutterBottom key={i}>
+                        {s} .{` `}
+                      </Typography>
+                    );
+                  })}
+                </Card>
+              </Grid>
+            );
+          })}
       </Grid>
-      {post &&
-        post.map((p) => {
-          return (
-            <Grid key={p.id} item xs={12} md={6} lg={4}>
-              <Card sx={{ padding: "3%", overflow: "hidden", width: "84%" }}>
-                <Typography
-                  variant="h5"
-                  sx={{ fontSize: "2rem", fontWeight: "600" }}
-                >
-                  {p.profile}
-                </Typography>``
-                <Typography
-                  sx={{ color: "#585858", marginTop: "2%" }}
-                  variant="body"
-                >
-                  Description: {p.desc}
-                </Typography>
-                <br />
-                <br />
-                <Typography variant="h6">
-                  Years of Experience: {p.exp} years
-                </Typography>
-
-                <Typography gutterBottom variant="body">
-                  Skills :{" "}
-                </Typography>
-                {p.techs.map((s, i) => {
-                  
-                  return (
-                    <Typography variant="body" gutterBottom key={i}>
-
-                      {s} .{` `}
-                    </Typography>
-                  );
-                })}
-              </Card>
-            </Grid>
-          );
-        })}
-    </Grid>
+    </div>
   );
 };
 
